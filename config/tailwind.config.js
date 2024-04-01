@@ -14,6 +14,10 @@ module.exports = {
       },
     },
   },
+  daisyui: {
+    themes: ["valentine", "dark"],
+    darkTheme: "valentine",
+  },
   plugins: [
     require("@tailwindcss/forms"),
     require("@tailwindcss/aspect-ratio"),
