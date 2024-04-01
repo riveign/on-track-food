@@ -22,12 +22,13 @@ default: &default
 development:
   <<: *default
   database: on_track_food_development
+  username: nacho
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
   # When left blank, PostgreSQL will use the default role. This is
   # the same name as the operating system user running Rails.
-  #username: on_track_food
+  #username: on_track
 
   # The password associated with the PostgreSQL role (username).
   #password:
@@ -56,6 +57,7 @@ development:
 test:
   <<: *default
   database: on_track_food_test
+  username: nacho
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -79,6 +81,8 @@ test:
 #
 production:
   <<: *default
-  database: on_track_food_production
-  username: on_track_food
-  password: <%= ENV["ON_TRACK_FOOD_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
+  database: <%= ENV["ON_TRACK_DATABASE"] %>
+  username: <%= ENV["ON_TRACK_DATABASE_USER"] %>
+  password: <%= ENV["ON_TRACK_DATABASE_PASSWORD"] %>
+  pool: 10
