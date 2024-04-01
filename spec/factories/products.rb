@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :product do
     name { "Sample Product" }
-    category { "Pantry" }
+    category { "pantry" }
 
     trait :without_name do
       name { nil }
