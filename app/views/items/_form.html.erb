@@ -1,0 +1,32 @@
+<%= form_for(item, html: { class: "space-y-4" }) do |f| %>
+  <% if item.errors.any? %>
+    <div id="error_explanation" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+      <strong class="font-bold">Oops!</strong>
+      <span class="block sm:inline">The following errors prevented the item from being saved:</span>
+      <ul class="list-disc list-inside">
+        <% item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :product_id, "Product", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.collection_select :product_id, Product.all, :id, :name, {}, { class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm" } %>
+  </div>
+
+  <div class="field">
+    <%= f.label :expiry_date, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.date_field :expiry_date, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm", value: item.expiry_date || Date.today %>
+  </div>
+
+  <div class="field">
+    <%= f.label :quantity, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.number_field :quantity, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm", min: 0 %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Save Item", class: "px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-500 hover:bg-blue-700 focus:outline-none" %>
+  </div>
+<% end %>
